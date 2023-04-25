@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}CheckOut{% endblock title %}
+
+{% block content %}
+<h1>Checkout</h1>
+<div class="order-info">
+    <ul>
+        {% for item in cart %}
+        <li>
+            {{ item.quantity }}X {{ item.product.name }}
+            <span>${{ item.total_price }}</span>
+        </li>
+        {% endfor %}
+        {% if cart.coupon %}
+        <li>
+            "{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
+            <span class="neg">- ${{ cart.get_discount|floatformat:2 }}</span>
+        </li>
+        {% endif %}
+    </ul>
+    <p> Total: ${{ cart.get_total_price_after_discount|floatformat:2 }}</p>
+</div>
+<form action="#" method="post" class="order-form">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <p><input type="submit" value="Place Order"></p>
+</form>
+{% endblock content %}
