@@ -1,5 +1,5 @@
 # CaffeineShop
-A simple demo Ecommerece website to buy tea and coffee based products.
+A simple demo Ecommerece website built to check the structure of e-commerce web application .
 
 ## Requirements
 Python: >= 3.8
